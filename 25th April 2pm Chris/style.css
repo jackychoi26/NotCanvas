@@ -1,0 +1,39 @@
+#canvas-draft {
+    border: 1px black dotted;
+    z-index: 1;
+    position: absolute;
+    background-color: transparent;
+    left: 100px;
+}
+
+#canvas-real {
+    border: 1px black dotted;
+    position: absolute;
+    left: 100px;
+}
+
+body {
+    overflow: hidden;
+}
+
+#canvas-container {
+    height: 600px;
+}
+
+.color-picker {
+    margin-top: 40px;
+}
+
+#display {
+    background: rgb( 127, 127, 127);
+    height: 80px;
+    width: 80px;
+}
+
+.range {
+    width: 80px;
+}
+
+.all-container {
+    display: flex;
+}

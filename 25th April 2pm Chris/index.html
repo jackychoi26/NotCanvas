@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+    <link href="./style.css" rel="stylesheet">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Not Canvas</title>
+</head>
+
+<body>
+    <div class="all-container">
+        <div class="functional-section">
+            <button id="draw">Draw</button><br>
+            <button id="drawRect">Draw Rect</button><br>
+            <button id="drawLine">Draw Line</button><br>
+            <button id="drawCurve">Draw Curve</button><br>
+            <button id="drawCircle">Draw Circle</button><br>
+            <button id="drawTriangle">Draw Triangle</button><br>
+            <button id="text">Text</button><br>
+            <button id="fill">Fill</button><br>
+            <button id="colorPicker">Pick Color</button><br>
+            <button id="clear">Clear</button><br>
+            <button id="eraser">Eraser</button><br>
+            <button id="undo">Undo</button><br>
+            <button id="redo">Redo</button><br>
+
+            <div class="color-picker">
+                <input type="range" min="0" max="255" class="range" id="red"><br>
+                <input type="range" min="0" max="255" class="range" id="green"><br>
+                <input type="range" min="0" max="255" class="range" id="blue">
+                <div id="display">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="text-container">
+
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="canvas-draft" class="canvas" width="1280px" height="720px" tabindex='1'>Your browser does not support Canvas</canvas>
+            <canvas id="canvas-real" class="canvas" width="1280px" height="720px">Your browser does not support Canvas</canvas>
+        </div>
+        <div class="pallete">
+            <div class="red"></div>
+        </div>
+    </div>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+
+    <!-- Dat.gui for animation -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script> -->
+
+    <!-- Custome js -->
+    <script type="text/javascript" src="./javascript/canvas-common.js"></script>
+    <script type="text/javascript" src="./javascript/drawing-line.js"></script>
+    <script type="text/javascript" src="./javascript/drawing.js"></script>
+    <script type="text/javascript" src="./javascript/drawing-rectangle.js"></script>
+    <script type="text/javascript" src="./javascript/drawing-circle.js"></script>
+    <script type="text/javascript" src="/javascript/drawing-curve.js"></script>
+    <script type="text/javascript" src="./javascript/drawing-triangle.js"></script>
+    <script type="text/javascript" src="./javascript/text.js"></script>
+    <script type="text/javascript" src="./javascript/fill.js"></script>
+    <script type="text/javascript" src="./javascript/fill2.js"></script>
+   <script type="text/javascript" src="./javascript/gravity.js"></script>
+    <script type="text/javascript" src="./javascript/color-picker.js"></script>
+    <script type="text/javascript" src="/javascript/eraser.js"></script>
+    <script type="text/javascript" src="/javascript/undo-redo.js"></script>
+    
+    
+
+
+
+    <script type="text/javascript" src="./javascript/init.js"></script>
+
+
+
+    <script>
+        drawImage();
+        currentFunction = new Drawing(contextReal, contextDraft);
+    </script>
+</body>
+
+</html>

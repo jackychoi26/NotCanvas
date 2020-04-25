@@ -1,0 +1,26 @@
+Change the style of textbox
+Device pixel ratio
+Remember to modify the hardcoded value of Canvas height and width in fill
+Why the reachLeft and reachRight need to be reset before checking
+Add a control point to rotate triangle
+Allow circle to be oval shape
+How to add JS library from git directly
+
+
+AS OF 2.30PM ON SATURDAY 25th April:
+
+CHRIS TO DO:
+
+turn all text buttons into symbols
+carousel buttons for change background
+button to reveal menu
+save Canvas
+
+JACKY TO DO:
+
+change opacity
+upload background
+extra box of preset colours
+animations
+
+
