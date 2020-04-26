@@ -1,0 +1,74 @@
+
+nav {
+    height: auto;
+    width: auto;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+#canvas-draft {
+    border: 1px black dotted;
+    z-index: 1;
+    position: absolute;
+    background-color: transparent;
+    left: 100px;
+}
+
+#canvas-real {
+    border: 1px black dotted;
+    background-color: white;
+    opacity: 1;
+    position: absolute;
+    left: 100px;
+}
+
+
+body {
+    overflow: hidden;
+    background-image: url(images/cafe.jpg);
+    background-size: 1920px, 1680px;
+    background-repeat: no-repeat;
+}
+
+
+.functionalSection {
+    margin-top: 0px;
+}
+
+#canvas-container {
+    height: 600px;
+    margin-top: 0px;
+}
+
+.color-picker {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dropdown-menu {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#display {
+    background: rgb( 127, 127, 127);
+    height: 80px;
+    width: 80px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.range {
+    width: 80px;
+}
+
+#all-container {
+    display: flex;
+    margin-top: 70px;
+    height: auto;
+    width: auto;
+}

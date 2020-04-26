@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css"
+        integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"
+        integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD"
+        crossorigin="anonymous"></script>
+    <link href="./style.css" rel="stylesheet">
+    <title>Not CanvasTEST</title>
+</head>
+
+<body>
+    <!-- nav -->
+    <nav class="navbar-fluid navbar-dark bg-dark navbar-fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler hidden-md-up pull-xs-right" data-target="#collapsenav" data-toggle="collapse"
+                type="button"><i class="icon-reorder icon-large" style="color:rgb(255, 255, 255)"></i>
+            </button>
+            <div class="navbar-toggleable-sm collapse pull-md-left text-xs-center" id="collapsenav">
+                <ul class="nav navbar-nav">
+                    <div class="btn-group">
+                        <button id="maintools" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i
+                                class="icon-pencil icon-large"></i></button>
+                        <div class="dropdown-menu text-center">
+                            <li id="draw" class="btn btn-inverse align-middle"><i class="icon-pencil icon-large align-middle"></i></li><br>
+                            <li id="drawLine" class="btn btn-inverse"><i class="icon-minus icon-large"></i></li><br>
+                            <li id="drawCurve" class="btn btn-inverse"><i class="icon-random icon-large"></i></li><br>
+                            <li id="drawRect" class="btn btn-inverse"><i class="icon-stop icon-large"></i></li><br>
+                            <li id="drawCircle" class="btn btn-inverse"><i class="icon-circle icon-large"></i></li><br>
+                            <li id="drawTriangle" class="btn btn-inverse"><i class="icon-play icon-large"></i></li><br>
+                            <li id="text" class="btn btn-inverse"><i class="icon-font icon-large"></i></li>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button id="settings" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i
+                                class="icon-cog icon-large"></i></button>
+                        <div class="dropdown-menu">
+                            <li id="clear" class="btn btn-inverse"><i class="icon-trash icon-large"></i></li><br>
+                            <li id="eraser" class="btn btn-inverse"><i class="icon-eraser icon-large"></i></li><br>
+                            <li id="upload" class="btn btn-inverse"><i class="icon-folder-open icon-large"></i></li><br>
+                            <li id="opacity" class="btn btn-inverse"><i class="icon-beaker icon-large"></i></li><br>
+                            <li id="save" class="btn btn-inverse"><i class="icon-save icon-large"></i></li>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button id="color" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i
+                                class="icon-filter icon-large"></i></button>
+                        <div class="dropdown-menu">
+                            <li class="btn btn-inverse"><i class="icon-tint icon-large"
+                                    style="color:rgb(25, 119, 49)"></i></li>
+                            <div class="color-picker">
+                                <input type="range" min="0" max="255" class="range" id="red"><br>
+                                <input type="range" min="0" max="255" class="range" id="green"><br>
+                                <input type="range" min="0" max="255" class="range" id="blue">
+                                <div id="display">
+                                </div>
+                            </div><br>
+                            <div class="attributes"></div>
+                        </div>
+                    </div>
+                    <button id="undo" class="btn btn-inverse"><i class="icon-undo icon-large"></i></button>
+                    <button id="redo" class="btn btn-inverse"><i class="icon-rotate-right icon-large"></i></button>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid" id="all-container">
+
+        <div class="text-container"></div>
+
+        <div class="canvas-container">
+            <canvas id="canvas-draft" class="canvas" width="1280px" height="720px" tabindex='1'>Your browser does not
+                support Canvas</canvas>
+            <canvas id="canvas-real" class="canvas" width="1280px" height="720px">Your browser does not support
+                Canvas</canvas>
+        </div>
+        <div class="pallete">
+            <div class="red"></div>
+        </div>
+    </div>
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"
+        integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"
+        integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"
+        integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD"
+        crossorigin="anonymous"></script>
+
+    <!-- Dat.gui for animation -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script> -->
+
+    <!-- Custome js -->
+    <script type="text/javascript" src="./javascript/canvas-common.js"></script>
+    <script type="text/javascript" src="./javascript/drawing-line.js"></script>
+    <script type="text/javascript" src="./javascript/drawing.js"></script>
+    <script type="text/javascript" src="./javascript/drawing-rectangle.js"></script>
+    <script type="text/javascript" src="./javascript/drawing-circle.js"></script>
+    <script type="text/javascript" src="/javascript/drawing-curve.js"></script>
+    <script type="text/javascript" src="./javascript/drawing-triangle.js"></script>
+    <script type="text/javascript" src="./javascript/text.js"></script>
+    <script type="text/javascript" src="./javascript/fill.js"></script>
+    <script type="text/javascript" src="./javascript/fill2.js"></script>
+    <script type="text/javascript" src="./javascript/gravity.js"></script>
+    <script type="text/javascript" src="./javascript/color-picker.js"></script>
+    <script type="text/javascript" src="/javascript/eraser.js"></script>
+    <script type="text/javascript" src="/javascript/undo-redo.js"></script>
+    <script type="text/javascript" src="/javascript/upload-save.js"></script>
+
+
+
+
+
+    <script type="text/javascript" src="./javascript/init.js"></script>
+
+
+
+    <script>
+        drawImage();
+        currentFunction = new Drawing(contextReal, contextDraft);
+    </script>
+</body>
+
+</html>
