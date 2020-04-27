@@ -1,0 +1,30 @@
+
+AS OF 3PM ON MONDAY 27th April:
+
+CHRIS TO DO:
+
+write the readme
+
+write the presentation plan, such as:
+    questions to ask audience
+    work out timing for each section
+    divide areas of speaking and order of speaking.
+
+
+JACKY TO DO:
+
+
+the upload image needs to upload the path that one specifies, not just a default image.
+
+
+for rectangle and text, the color picker isnt working... but for the others its fine.
+
+
+
+SCHEDULE:
+
+meeting at 8pm to discuss written presentation plan, and to upload final version, then I will reconcile final styling
+
+practice run through on zoom this evening at 8pm
+
+make sure to upload final version to surge
