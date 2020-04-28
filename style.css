@@ -1,6 +1,18 @@
+/* nav */
+
+nav {
+    height: auto;
+    width: auto;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+/* canvas */
+
 #canvas-draft {
     border: 1px black dotted;
-    z-index: 1000;
+    z-index: 1;
     position: absolute;
     background-color: transparent;
     left: 100px;
@@ -8,18 +20,147 @@
 
 #canvas-real {
     border: 1px black dotted;
+    background-color: white;
+    opacity: 1;
     position: absolute;
     left: 100px;
 }
 
 body {
     overflow: hidden;
+    background-image: url(images/cafe.jpg);
+    background-size: cover;
 }
 
 #canvas-container {
     height: 600px;
+    margin-top: 0px;
 }
 
-.all-container {
+
+/* buttons and menus */
+
+.btn {
+    background-color: peachpuff;
+    color: black;
+    height: 50px;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.753);
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-menu {
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+    background-color: rgb(255, 239, 226);
+    color: black;
+}
+
+#upload {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* TITLE COLOR BUTTON */
+
+#transparent {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+#opaque {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+
+/* color picker */
+
+.color-picker {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* box showing currently selected colour */
+
+#display {
+    background: rgb( 127, 127, 127);
+    height: 80px;
+    width: 80px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.color-box {
+    width: 60px;
+    margin-top: 20px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+}
+
+.box {
+    background-color: black;
+    height: 30px;
+    width: 30px;
+}
+
+#Mist {
+    background-color: rgb(144, 175, 197);
+}
+
+#Stone {
+    background-color: rgb(51, 107, 135);
+}
+
+#Shadow {
+    background-color: rgb(42, 49, 50);
+}
+
+#Autumn {
+    background-color: rgb(118, 54, 38);
+}
+
+#Crevice {
+    background-color: rgb(70, 33, 26);
+}
+
+#CloudShadow {
+    background-color: rgb(105, 61, 61);
+}
+
+#Desert {
+    background-color: rgb(186, 85, 54);
+}
+
+#RedClay {
+    background-color: rgb(164, 56, 32);
+}
+
+#Moss {
+    background-color: rgb(174, 189, 56);
+}
+
+#all-container {
+    display: flex;
+    margin-top: 70px;
+    height: auto;
+    width: auto;
 }

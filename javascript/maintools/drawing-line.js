@@ -4,12 +4,6 @@ class DrawingLine extends PaintFunction {
         this.contextReal = contextReal;
         this.contextDraft = contextDraft;
         this.escape = false;
-        this.contextReal.strokeStyle = "#df4b26";
-        this.contextReal.lineJoin = "round";
-        this.contextReal.lineWidth = 5;
-        this.contextDraft.strokeStyle = "#df4b26";
-        this.contextDraft.lineJoin = "round";
-        this.contextDraft.lineWidth = 5;
     }
 
     onMouseDown(coord, styleGuide, event) {
@@ -18,6 +12,8 @@ class DrawingLine extends PaintFunction {
     }
 
     onDragging(coord, event) {
+        this.contextDraft.strokeStyle = `rgb(${currentColor[0]}, ${currentColor[1]}, ${currentColor[2]})`;
+        this.contextDraft.lineWidth = $('#lineWidth')[0].value;
         this.contextDraft.beginPath();
         this.contextDraft.moveTo(this.startX, this.startY);
         this.contextDraft.clearRect(0, 0, 1280, 720);
@@ -28,10 +24,13 @@ class DrawingLine extends PaintFunction {
     onMouseMove() {}
 
     onMouseUp(coord, event) {
+        this.contextReal.strokeStyle = `rgb(${currentColor[0]}, ${currentColor[1]}, ${currentColor[2]})`;
         this.contextReal.beginPath();
+        this.contextReal.lineWidth = $('#lineWidth')[0].value;
         this.contextReal.moveTo(this.startX, this.startY);
         this.contextReal.lineTo(coord[0], coord[1]);
         this.contextReal.stroke();
+        cPush();
         this.contextDraft.clearRect(0, 0, 1280, 720);
     }
 

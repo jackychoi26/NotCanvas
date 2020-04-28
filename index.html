@@ -1,42 +1,216 @@
 <!DOCTYPE html>
-<html charset="UTC-8">
+<html>
 
 <head>
-    <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- fontawesome -->
+    <script src="https://use.fontawesome.com/34ed8053aa.js"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css" integrity="sha384-MIwDKRSSImVFAZCVLtU0LMDdON6KVCrZHyVQQj6e8wIEJkW4tvwqXrbMIya1vriY" crossorigin="anonymous">
+
+    <!-- bootstrap js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
+
+    <!-- google css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- local css -->
     <link href="./style.css" rel="stylesheet">
+
+    <!-- page title -->
+    <title>Canvas</title>
 </head>
 
 <body>
-    <div class="all-container">
-        <div class="functional-section">
-            <button id="draw">Draw</button><br>
-            <button id="drawRect">Draw Rect</button><br>
-            <button id="drawLine">Draw Line</button><br>
-            <button id="drawCircle">Draw Circle</button><br>
-            <button id="text">Text</button><br>
-            <button id="clear">Clear</button>
+
+    <!-- start of nav bar-->
+    <nav class="navbar-fluid navbar-dark bg-dark navbar-fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler hidden-md-up pull-xs-right" data-target="#collapsenav" data-toggle="collapse" type="button"><i class="icon-reorder icon-large" style="color:rgb(255, 255, 255)"></i>
+            </button>
+            <div class="navbar-toggleable-sm collapse pull-md-left text-xs-center" id="collapsenav">
+                <ul class="nav navbar-nav">
+
+                    <!-- second title button: color -->
+                    <div class="btn-group">
+                        <button id="color" class="btn btn-inverse dropdown-toggle" type="button" data-toggle="collapse" data-target="#colorList"><i class="material-icons">color_lens</i></button>
+                        <div id="colorList" class="dropdown-menu">
+
+                            <!-- range: line width -->
+                            </br><input type="range" id="lineWidth" min="1" max="9" class="list-item">
+
+                            <!-- button: make canvas transparent -->
+                            <li id="transparent" class="list-item"><i class="fa fa-square-o icon-large"></i></li><br>
+
+                            <!-- button: make canvas opaque -->
+                            <li id="opaque" class="list-item"><i class="fa fa-square icon-large"></i></li><br>
+
+                            <!-- button: fill colour -->
+                            <li id="fill" class="list-item"><i class="material-icons">format_color_fill</i></li><br>
+
+                            <!-- button: pick colour -->
+                            <li id="pick-color" class="list-item"><i class="fa fa-tint icon-large"></i></li><br>
+                            <div class="color-picker">
+
+                                <!-- rgb code for the customized color -->
+                                <input type="range" min="0" max="255" class="range" id="red"><br>
+                                <input type="range" min="0" max="255" class="range" id="green"><br>
+                                <input type="range" min="0" max="255" class="range" id="blue"><br>
+
+                                <!-- box showing current colour -->
+                                <div id="display"></div>
+
+                                <!-- box showing nine suggested colours -->
+                                <div class="color-box">
+                                    <div class="row">
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="Mist" onclick="changeColor(144,175,197)"></div>
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="Stone" onclick="changeColor(51,107,135)"></div>
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="Shadow" onclick="changeColor(42,49,50)"></div>
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="Autumn" onclick="changeColor(118,54,38)"></div>
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="Crevice" onclick="changeColor(70,33,26)"></div>
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="CloudShadow" onclick="changeColor(105,61,61)"></div>
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="Desert" onclick="changeColor(186,85,54)"></div>
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="RedClay" onclick="changeColor(164,56,32)"></div>
+                                        <div class="box col-lg-4 col-md-4 col-sm-4" id="Moss" onclick="changeColor(176,189,56)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- first title button: draw -->
+                    <div class="btn-group">
+                        <button id="maintools" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i class="icon-pencil icon-large"></i></button>
+                        <div class="dropdown-menu text-center">
+
+                            <!-- button: free draw -->
+                            <li id="draw" class="list-item"><i class="material-icons">gesture</i></li><br>
+
+                            <!-- button: draw straight line -->
+                            <li id="drawLine" class="list-item"><i class="icon-minus icon-large"></i></li><br>
+
+                            <!-- button: draw curved line -->
+                            <li id="drawCurve" class="list-item"><i class="material-icons">rounded_corner</i></li><br>
+
+                            <!-- button: draw rectangle -->
+                            <li id="drawRect" class="list-item"><i class="icon-stop icon-large"></i></li><br>
+
+                            <!-- button: draw circle -->
+                            <li id="drawCircle" class="list-item"><i class="icon-circle icon-large"></i></li><br>
+
+                            <!-- button: draw triangle -->
+                            <li id="drawTriangle" class="list-item"><i class="icon-play icon-large"></i></li><br>
+
+                            <!-- button: insert text -->
+                            <li id="text" class="list-item"><i class="icon-font icon-large"></i></li><br>
+
+                            <!-- button: eraser -->
+                            <li id="eraser" class="list-item"><i class="icon-eraser icon-large"></i></li>
+                        </div>
+                    </div>
+
+                    <!-- third title button: undo -->
+                    <button id="undo" class="btn btn-inverse"><i class="icon-undo icon-large"></i></button>
+
+                    <!-- fourth title button: redo -->
+                    <button id="redo" class="btn btn-inverse"><i class="icon-rotate-right icon-large"></i></button>
+
+                    <!-- fifth title button: settings -->
+                    <div class="btn-group" onclick="startGame()">
+                        <button id="settings" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i
+                                class="icon-cog icon-large"></i></button>
+                        <div class="dropdown-menu">
+
+                            <!-- button: clear canvas -->
+                            </br>
+                            <li id="clear" class="list-item"><i class="icon-trash icon-large"></i></li><br>
+
+                            <!-- button: upload background image -->
+                            <label id="upload" class="list-item list-item-file">
+                                <i class="fa fa-file-image-o icon-large"></i>
+                                <input type="file" id="upload-background" style="display: none;">
+                            </label><br>
+
+                            <!-- button: save canvas -->
+                            <li id="save" class="list-item"><i class="fa-floppy-o icon-large"></i></li><br>
+
+                            <!-- moving the balls -->
+                            <li id="moveBalls" class="list-item" style="visibility: hidden;" onclick="rollBalls()"><i class="icon-circle icon-large"></i></li><br>
+
+                            <!-- hidden button for the mini game -->
+                            <li id="ballGame" class="list-item" style="visibility: hidden;" onclick="startDodgingVirus()"><i class="icon-certificate icon-large"></i></li><br>
+                        </div>
+                    </div>
+                </ul>
+            </div>
         </div>
+    </nav>
+    <!-- end of nav bar -->
+
+    <!-- canvas container -->
+    <div class="container-fluid" id="all-container">
+
+        <!-- Empty for now, but will serve to contain the text input at run time -->
+        <div class="text-container">
+
+        </div>
+
         <div class="canvas-container">
-            <canvas id="canvas-draft" width="1280px" height="720px">Your browser does not support Canvas</canvas>
-            <canvas id="canvas-real" width="1280px" height="720px">Your browser does not support Canvas</canvas>
+            <canvas id="canvas-draft" class="canvas" width="1280px" height="720px" tabindex='1'>Your browser does not support Canvas</canvas>
+            <canvas id="canvas-real" class="canvas" width="1280px" height="720px">Your browser does not support Canvas</canvas>
         </div>
+
     </div>
 
-    <!-- Jquery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <!-- Scripts: external-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
 
-    <!-- Custome js -->
+    <!-- Dat.gui for animation -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script> -->
+
+    <!-- Local JS files -->
     <script type="text/javascript" src="./javascript/canvas-common.js"></script>
-    <script type="text/javascript" src="./javascript/drawing-line.js"></script>
-    <script type="text/javascript" src="./javascript/drawing.js"></script>
-    <script type="text/javascript" src="./javascript/drawing-rectangle.js"></script>
-    <script type="text/javascript" src="./javascript/drawing-circle.js"></script>
-    <script type="text/javascript" src="./javascript/text.js"></script>
 
-    <!-- <script type="text/javascript" src="./javascript/text.js.js"></script> -->
+    <!-- the drawing tools -->
+    <script type="text/javascript" src="./javascript/maintools/drawing-line.js"></script>
+    <script type="text/javascript" src="./javascript/maintools/drawing.js"></script>
+    <script type="text/javascript" src="./javascript/maintools/drawing-rectangle.js"></script>
+    <script type="text/javascript" src="./javascript/maintools/drawing-circle.js"></script>
+    <script type="text/javascript" src="./javascript/maintools/drawing-curve.js"></script>
+    <script type="text/javascript" src="./javascript/maintools/drawing-triangle.js"></script>
+    <script type="text/javascript" src="./javascript/maintools/text.js"></script>
+    <script type="text/javascript" src="./javascript/maintools/eraser.js"></script>
+
+    <!-- color related setting -->
+    <script type="text/javascript" src="./javascript/colorpanel/color-picker.js"></script>
+    <script type="text/javascript" src="./javascript/colorpanel/pick-color.js"></script>
+    <script type="text/javascript" src="./javascript/colorpanel/fill.js"></script>
+
+    <!-- other functions -->
+    <script type="text/javascript" src="./javascript/setting/undo-redo.js"></script>
+    <script type="text/javascript" src="./javascript/setting/upload-background.js"></script>
+    <script type="text/javascript" src="./javascript/setting/save.js"></script>
+
+    <!-- animation effect -->
+    <script type="text/javascript" src="./javascript/animation/bouncing-circle.js"></script>
+    <script type="text/javascript" src="./javascript/animation/coronavirus-game.js"></script>
+
+    <!-- Local JS init file -->
     <script type="text/javascript" src="./javascript/init.js"></script>
 
+    <!-- Scripts to run on page-load -->
     <script>
+        // to detect the load event defined in undo-redo section
+        drawImage();
+
+        // initialize the canvas with free drawing tool
         currentFunction = new Drawing(contextReal, contextDraft);
     </script>
 </body>
